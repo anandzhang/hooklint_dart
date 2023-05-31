@@ -9,14 +9,14 @@ void main(List<String> arguments) async {
 
   // 获取 .git/hooks
   final ProcessResult result =
-  Process.runSync('git', ['rev-parse', '--git-dir']);
+      Process.runSync('git', ['rev-parse', '--git-dir']);
   if (result.stdout is! String || result.stdout.isEmpty) {
     print('not a git repository');
     return;
   }
 
   final File preCommitHook =
-  File('${(result.stdout as String).trim()}/hooks/pre-commit');
+      File('${(result.stdout as String).trim()}/hooks/pre-commit');
   if (preCommitHook.existsSync()) {
     // 已有 pre-commit hook 先备份
     final File backup = File(
@@ -26,7 +26,7 @@ void main(List<String> arguments) async {
 
   // 获取hook模板
   final Uri? packageUri =
-  await Isolate.resolvePackageUri(Uri.parse('package:flutter_git_hooks/'));
+      await Isolate.resolvePackageUri(Uri.parse('package:flutter_git_hooks/'));
   if (packageUri?.path.isEmpty ?? true) {
     print('not found package');
     return;

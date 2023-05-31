@@ -26,7 +26,7 @@ void main(List<String> arguments) async {
 
   // 获取hook模板
   final Uri? packageUri =
-      await Isolate.resolvePackageUri(Uri.parse('package:flutter_git_hooks/'));
+      await Isolate.resolvePackageUri(Uri.parse('package:hooklint/'));
   if (packageUri?.path.isEmpty ?? true) {
     print('not found package');
     return;

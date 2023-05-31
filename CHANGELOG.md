@@ -5,3 +5,7 @@
 ## 0.1.1
 
 - Add executables.
+
+## 0.1.2
+
+- Fix package name.

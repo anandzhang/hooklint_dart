@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# only handle Added,Copied,Modified files
+STAGED_FILES="$(git diff --name-only --cached --diff-filter=ACM -- '*.dart')"
+
+if [[ "$STAGED_FILES" = "" ]]; then
+  exit 0
+fi
+
+flutter format $STAGED_FILES
+git add $STAGED_FILES
+flutter analyze $STAGED_FILES
+
+exit $?

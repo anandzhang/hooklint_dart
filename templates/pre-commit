@@ -7,8 +7,14 @@ if [[ "$STAGED_FILES" = "" ]]; then
   exit 0
 fi
 
-flutter format $STAGED_FILES
+# auto fix linter rules
+for FILE in $STAGED_FILES; do
+  # dart fix only one file
+  dart fix --apply "$FILE"
+done
+
+dart format $STAGED_FILES
 git add $STAGED_FILES
-flutter analyze $STAGED_FILES
+dart analyze $STAGED_FILES
 
 exit $?

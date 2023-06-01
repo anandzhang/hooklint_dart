@@ -20,6 +20,7 @@ linter:
     - always_use_package_imports
     - avoid_dynamic_calls
     - avoid_type_to_string
+    - cancel_subscriptions
     - unnecessary_statements
     - always_declare_return_types
     - avoid_bool_literals_in_conditional_expressions
@@ -31,13 +32,16 @@ linter:
     - prefer_final_in_for_each
     - prefer_final_locals
     - prefer_single_quotes
-    - require_trailing_commas
+    - public_member_api_docs
     - unnecessary_parenthesis
     - use_named_constants
 
-# analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+analyzer:
+  errors:
+    always_use_package_imports: error
+    cancel_subscriptions: error
+    always_declare_return_types: error
+    only_throw_errors: error
 
 # For more information about the core and recommended set of lints, see
 # https://dart.dev/go/core-lints

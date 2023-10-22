@@ -8,3 +8,6 @@ build/
 # IDE files
 .idea/
 .vscode/
+
+# lockfile
+pubspec.lock

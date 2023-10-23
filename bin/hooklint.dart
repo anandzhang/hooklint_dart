@@ -1,24 +1,17 @@
+import 'package:hooklint/constants/command.dart';
 import 'package:hooklint/install.dart';
 import 'package:hooklint/run.dart';
 
-enum Command {
-  install,
-  run,
-}
-
 void main(List<String> arguments) async {
-  if (arguments.isEmpty) {
-    print('--help');
+  if (arguments.isEmpty || Command.run.be(arguments.first)) {
+    run();
     return;
   }
 
-  if (arguments.first == Command.install.name) {
+  if (Command.install.be(arguments.first)) {
     install();
     return;
   }
 
-  if (arguments.first == Command.run.name) {
-    run();
-    return;
-  }
+  print(commandsHelp);
 }

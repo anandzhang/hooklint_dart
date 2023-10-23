@@ -1,13 +1,13 @@
 import 'dart:io';
-import 'dart:isolate';
-import 'package:path/path.dart' as path;
+import 'package:hooklint/constants/shell.dart';
+import 'package:hooklint/utils/pubspec_util.dart';
 
 /// install git pre-commit hook
 Future<void> install() async {
-  // 获取 .git/hooks
+  // get .git/hooks
   final ProcessResult result =
       Process.runSync('git', ['rev-parse', '--git-dir']);
-  if (result.stdout is! String || result.stdout.isEmpty) {
+  if (result.stdout is! String || (result.stdout as String).isEmpty) {
     print('not a git repository');
     return;
   }
@@ -15,23 +15,14 @@ Future<void> install() async {
   final File preCommitHook =
       File('${(result.stdout as String).trim()}/hooks/pre-commit');
   if (preCommitHook.existsSync()) {
-    // 已有 pre-commit hook 先备份
+    // back up existing pre-commit
     final File backup = File(
         '${preCommitHook.path}.bak.${DateTime.now().millisecondsSinceEpoch}');
     backup.writeAsStringSync(preCommitHook.readAsStringSync());
   }
-
-  // 获取hook模板
-  final Uri? packageUri =
-      await Isolate.resolvePackageUri(Uri.parse('package:hooklint/'));
-  if (packageUri?.path.isEmpty ?? true) {
-    print('not found package');
-    return;
-  }
-  final File preCommitTemplate = File(
-      path.normalize(path.join(packageUri!.path, '../templates/pre-commit')));
-  // 写入hook
-  preCommitHook.writeAsStringSync(preCommitTemplate.readAsStringSync());
+  // write hook
+  preCommitHook.writeAsStringSync(
+      PubspecUtil.shared.hasDependency ? localTemplate : globalTemplate);
 
   // 添加执行权限
   final chmodResult = Process.runSync('chmod', ['+x', preCommitHook.path]);

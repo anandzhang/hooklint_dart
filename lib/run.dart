@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:hooklint/utils/pubspec_util.dart';
+
 /// run lint
 Future<void> run() async {
   final ProcessResult result = await Process.run('git', [
@@ -32,9 +34,11 @@ Future<void> run() async {
   final List<String> stagedFiles = stagedResult.split('\n');
 
   // try to fix
-  await Future.wait(stagedFiles.map((file) => Process.start(
-      'dart', ['fix', '--apply', file],
-      mode: ProcessStartMode.inheritStdio)));
+  if (PubspecUtil.shared.allowAutomaticFix) {
+    await Future.wait(stagedFiles.map((file) => Process.start(
+        'dart', ['fix', '--apply', file],
+        mode: ProcessStartMode.inheritStdio)));
+  }
 
   // format
   final process = await Process.start('dart', ['format', ...stagedFiles],

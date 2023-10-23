@@ -23,4 +23,12 @@ class PubspecUtil {
     final YamlMap? devDependencies = yaml['dev_dependencies'];
     return devDependencies?['hooklint'] != null;
   }
+
+  /// Allow using dart fix
+  ///
+  /// Default is false
+  bool get allowAutomaticFix {
+    final YamlMap? config = yaml['hooklint'];
+    return config?['autofix'] ?? false;
+  }
 }

@@ -9,3 +9,8 @@
 ## 0.1.2
 
 - Fix package name.
+
+## 0.1.3
+
+- Simplified installation.
+- Configurable automatic fix.

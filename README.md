@@ -4,26 +4,45 @@ Format and analyze code using pre-commit.
 
 > Windows platform is debugging.
 
-## Usage
+## Installation
 
-First you need to activate the `hooklint`:
+Add `hooklint` as a [dev_dependencies in your pubspec.yaml file](https://dart.dev/tools/pub/pubspec#dependencies).
+
+```yaml
+dev_dependencies:
+  hooklint: ^0.1.3
+```
+
+Then execute the following command from your project directory:
 
 ```shell
-dart pub global activate hooklint
+dart run hooklint install
 ```
 
-Then you just need to execute it in the project that needs to add pre-commit:
-
-```
-hooklint
-```
-
-> Maybe you don't want to use `global activate` , you can:
+>Alternatively, you can use `global activate` as a global command.
 >
-> ```shell
-> dart pub add --dev hooklint
-> dart run hooklint
-> ```
+>```shell
+>dart pub global activate hooklint
+>```
+>
+>Then install pre-commit hook.
+>
+>```shell
+>hooklint install
+>```
+
+## Usage
+
+![usage](https://raw.githubusercontent.com/anandzhang/hooklint_dart/main/screenshots/usage.gif)
+
+## Configuration
+
+If you need automatic `dart fix`, you can define it in pub.yaml.
+
+```yaml
+hooklint:
+  autofix: true
+```
 
 ## Troubleshooting
 

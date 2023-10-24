@@ -1,6 +1,6 @@
 name: hooklint
 description: Format and analyze code using pre-commit.
-version: 0.1.3
+version: 0.1.4
 homepage: https://github.com/anandzhang/hooklint_dart
 repository: https://github.com/anandzhang/hooklint_dart
 documentation: https://github.com/anandzhang/hooklint_dart/blob/main/README.md

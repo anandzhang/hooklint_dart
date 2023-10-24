@@ -2,16 +2,18 @@
 
 Format and analyze code using pre-commit.
 
-> Windows platform is debugging.
-
 ## Installation
 
-Add `hooklint` as a [dev_dependencies in your pubspec.yaml file](https://dart.dev/tools/pub/pubspec#dependencies).
+Add `hooklint` as
+a [dev_dependencies in your pubspec.yaml file](https://dart.dev/tools/pub/pubspec#dependencies)
+and `pub get` .
 
 ```yaml
 dev_dependencies:
   hooklint: ^0.1.3
 ```
+
+> Please use `dart pub get` even in flutter.
 
 Then execute the following command from your project directory:
 
@@ -19,7 +21,7 @@ Then execute the following command from your project directory:
 dart run hooklint install
 ```
 
->Alternatively, you can use `global activate` as a global command.
+> Alternatively, you can use `global activate` as a global command.
 >
 >```shell
 >dart pub global activate hooklint
@@ -63,3 +65,12 @@ hooklint:
 
 </details>
 
+<details>
+  <summary>dart run hooklint install
+Could not find a file named "pubspec.yaml" in "/Users/anand/.pub-cache/hosted/pub.flutter-io.cn/hooklint-0.1.3".</summary>
+
+    ```shell
+    dart pub get
+    ```
+
+</details>

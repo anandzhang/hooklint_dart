@@ -14,3 +14,8 @@
 
 - Simplified installation.
 - Configurable automatic fix.
+
+## 0.1.4
+
+- Remove chmod on Windows.
+- 

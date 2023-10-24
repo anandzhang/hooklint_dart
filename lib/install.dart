@@ -19,13 +19,15 @@ Future<void> install() async {
     final File backup = File(
         '${preCommitHook.path}.bak.${DateTime.now().millisecondsSinceEpoch}');
     backup.writeAsStringSync(preCommitHook.readAsStringSync());
+    print('The existing pre-commit file has been copied to ${backup.path}.');
   }
   // write hook
   preCommitHook.writeAsStringSync(
       PubspecUtil.shared.hasDependency ? localTemplate : globalTemplate);
 
-  // 添加执行权限
-  final chmodResult = Process.runSync('chmod', ['+x', preCommitHook.path]);
-  stdout.write(chmodResult.stdout);
-  stderr.write(chmodResult.stderr);
+  // assign execute permission
+  if (!Platform.isWindows) {
+    final chmodResult = Process.runSync('chmod', ['+x', preCommitHook.path]);
+    stdout.write(chmodResult.stderr);
+  }
 }

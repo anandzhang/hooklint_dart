@@ -53,8 +53,7 @@ Future<void> run() async {
       mode: ProcessStartMode.inheritStdio);
   final analyzeExitCode = await analyzeProcess.exitCode;
   if (analyzeExitCode != 0) {
-    print(
-        '\nYou can try to use `hooklint fix` or `dart fix` to fix the above issues.');
+    print('\nYou can try to use `dart fix` to fix the above issues.');
     print('Commit again after no errors.');
   }
 
